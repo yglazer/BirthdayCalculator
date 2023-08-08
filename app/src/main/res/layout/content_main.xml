@@ -1,8 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_marginBottom="@dimen/standard_margin"
+        android:id="@+id/banner"
+        android:text="@string/banner_text"
+        style="@style/multi_text_view_style" />
+
+    <TextView
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:id="@+id/tv_month"
+        android:text="@string/month"
+        style="@style/multi_text_view_style" />
+
+    <EditText
+        android:id="@+id/et_month"
+        android:hint="64"
+        style="@style/main_input_style" />
+    <TextView
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:id="@+id/tv_day"
+        android:text="@string/weight_day"
+        style="@style/multi_text_view_style" />
+
+    <EditText
+        android:id="@+id/et_day"
+        android:hint="64"
+        style="@style/main_input_style" />
+    <TextView
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:id="@+id/tv_year"
+        android:text="@string/year"
+        style="@style/multi_text_view_style" />
+
+    <EditText
+        android:id="@+id/et_year"
+        android:hint="120"
+        style="@style/main_input_style" />
+
+
+</LinearLayout>
