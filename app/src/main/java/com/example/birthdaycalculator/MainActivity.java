@@ -18,7 +18,7 @@ import com.example.birthdaycalculator.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
-
+/*hello*/
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
