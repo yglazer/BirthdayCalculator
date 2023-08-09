@@ -19,6 +19,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <include layout="@layout/multi_include_background"/>
     <include layout="@layout/content_main" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
