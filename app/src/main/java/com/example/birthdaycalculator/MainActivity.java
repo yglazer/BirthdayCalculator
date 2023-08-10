@@ -1,11 +1,17 @@
 package com.example.birthdaycalculator;
 
+import static androidx.preference.PreferenceManager.getDefaultSharedPreferences;
+
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -57,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            showSettings();
             return true;
         }
         else if (id == R.id.action_about) {
@@ -72,6 +79,13 @@ public class MainActivity extends AppCompatActivity {
                 "Tells you exactly how old you are, years, months, and days\n" +
                         "\nAndroid app by SG, YG, and CP.");
     }
+
+    private void showSettings() {
+        Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+        startActivity(intent);
+    }
+
+
     public static void showInfoDialog (Context context, String strTitle, String strMsg)
     {
         // create the listener for the dialog

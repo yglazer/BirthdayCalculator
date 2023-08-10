@@ -22,6 +22,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.settings_activity);
         attachFragment(savedInstanceState);
         setupActionBar();
+
     }
 
     private void attachFragment(Bundle savedInstanceState) {
