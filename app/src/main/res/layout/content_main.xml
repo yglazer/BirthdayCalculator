@@ -1,49 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <TextView
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layout_marginBottom="@dimen/standard_margin"
         android:id="@+id/banner"
+        style="@style/multi_text_view_style"
+        android:layout_width="287dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/banner_text"
-        style="@style/multi_text_view_style" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/pink"
+        app:layout_constraintBottom_toTopOf="@+id/tv_month"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:id="@+id/tv_month"
+        style="@style/multi_text_view_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/month"
-        style="@style/multi_text_view_style" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/pink"
+        app:layout_constraintBottom_toTopOf="@+id/et_month"
+        app:layout_constraintStart_toStartOf="@+id/et_month"
+        app:layout_constraintTop_toBottomOf="@+id/banner" />
 
     <EditText
         android:id="@+id/et_month"
+        style="@style/main_input_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:hint="mm"
-        style="@style/main_input_style" />
+        app:layout_constraintBottom_toTopOf="@+id/tv_day"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_month" />
+
     <TextView
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:id="@+id/tv_day"
+        style="@style/multi_text_view_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/weight_day"
-        style="@style/multi_text_view_style" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/pink"
+        app:layout_constraintBottom_toTopOf="@+id/et_day"
+        app:layout_constraintStart_toStartOf="@+id/et_month"
+        app:layout_constraintTop_toBottomOf="@+id/et_month" />
 
     <EditText
         android:id="@+id/et_day"
+        style="@style/main_input_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:hint="dd"
-        style="@style/main_input_style" />
+        app:layout_constraintBottom_toTopOf="@+id/tv_year"
+        app:layout_constraintStart_toStartOf="@+id/et_month"
+        app:layout_constraintTop_toBottomOf="@+id/tv_day" />
+
     <TextView
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:id="@+id/tv_year"
+        style="@style/multi_text_view_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/year"
-        style="@style/multi_text_view_style" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/pink"
+        app:layout_constraintBottom_toTopOf="@+id/et_year"
+        app:layout_constraintStart_toStartOf="@+id/et_day"
+        app:layout_constraintTop_toBottomOf="@+id/et_day" />
 
     <EditText
         android:id="@+id/et_year"
+        style="@style/main_input_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="322dp"
         android:hint="yyyy"
-        style="@style/main_input_style" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/et_day"
+        app:layout_constraintTop_toBottomOf="@+id/tv_year" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
