@@ -1,9 +1,12 @@
 package com.example.birthdaycalculator;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
@@ -56,14 +59,43 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+        else if (id == R.id.action_about) {
+            showAbout();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
 
-    /*private void showAbout() {
-        dismissSnackBarIfShown();
-        showInfoDialog(MainActivity.this, "About 13 Stones",
-                "A quick two-player game; have fun!\n" +
-                        "\nAndroid game by SA.\nmintedtech@gmail.com");
-    }*/
+    private void showAbout() {
+        showInfoDialog(MainActivity.this, "About Birthday Calculator",
+                "Tells you exactly how old you are, years, months, and days\n" +
+                        "\nAndroid app by SG, YG, and CP.");
+    }
+    public static void showInfoDialog (Context context, String strTitle, String strMsg)
+    {
+        // create the listener for the dialog
+        final DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener ()
+        {
+            @Override
+            public void onClick (DialogInterface dialog, int which)
+            {
+                dialog.dismiss();
+            }
+        };
+
+        // Create the AlertDialog.Builder object
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder (context);
+
+        // Use the AlertDialog's Builder Class methods to set the title, icon, message, et al.
+        // These could all be chained as one long statement, if desired
+        alertDialogBuilder.setTitle (strTitle);
+        alertDialogBuilder.setIcon (R.mipmap.ic_launcher);
+        alertDialogBuilder.setMessage (strMsg);
+        alertDialogBuilder.setCancelable (true);
+        alertDialogBuilder.setNeutralButton (context.getString (android.R.string.ok), listener);
+
+        // Create and Show the Dialog
+        alertDialogBuilder.show ();
+    }
 }
