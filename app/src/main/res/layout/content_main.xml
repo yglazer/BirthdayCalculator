@@ -22,7 +22,7 @@
 
     <EditText
         android:id="@+id/et_month"
-        android:hint="12"
+        android:hint="mm"
         style="@style/main_input_style" />
     <TextView
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -32,7 +32,7 @@
 
     <EditText
         android:id="@+id/et_day"
-        android:hint="30"
+        android:hint="dd"
         style="@style/main_input_style" />
     <TextView
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -42,7 +42,7 @@
 
     <EditText
         android:id="@+id/et_year"
-        android:hint="2000"
+        android:hint="yyyy"
         style="@style/main_input_style" />
 
 
