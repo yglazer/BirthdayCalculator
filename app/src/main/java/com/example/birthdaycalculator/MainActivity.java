@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder (context);
 
         // Use the AlertDialog's Builder Class methods to set the title, icon, message, et al.
-        // These could all be chained as one long statement, if desired
         alertDialogBuilder.setTitle (strTitle);
         alertDialogBuilder.setIcon (R.mipmap.ic_launcher);
         alertDialogBuilder.setMessage (strMsg);
@@ -112,4 +111,5 @@ public class MainActivity extends AppCompatActivity {
         // Create and Show the Dialog
         alertDialogBuilder.show ();
     }
+
 }
