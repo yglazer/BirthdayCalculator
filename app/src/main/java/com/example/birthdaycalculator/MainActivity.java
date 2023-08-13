@@ -1,23 +1,16 @@
 package com.example.birthdaycalculator;
 
-import static androidx.preference.PreferenceManager.getDefaultSharedPreferences;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
-
-import androidx.core.view.WindowCompat;
 
 import com.example.birthdaycalculator.databinding.ActivityMainBinding;
 
@@ -33,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView();
         setSupportActionBar(binding.toolbar);
-        Snackbar();
+        setupFAB();
     }
 
-    private void Snackbar() {
+    private void setupFAB() {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

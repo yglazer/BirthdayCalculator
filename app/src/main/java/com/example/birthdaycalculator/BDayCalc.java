@@ -64,12 +64,23 @@ public class BDayCalc {
         this.uDay = checkAndGetGreaterThanZero(uDay, "Day");
     }
     public int getUserYear() {return uYear;}
-    public void setUserYear(int uYear) {this.uYear = checkAndGetGreaterThanZero(uYear, "Year");}
+    public void setUserYear(int uYear) {this.uYear = checkYearIsValid(uYear);}
     private int checkAndGetGreaterThanZero(int value, String description) {
         if (value > 0)
             return value;
         else
             throw new IllegalArgumentException(description + " must be greater than zero.");
+    }
+
+    /* Checks that the year is not in the future because then the year will be negative */
+    private int checkYearIsValid(int value) {
+        LocalDate date = LocalDate.now();
+        if (value >= date.getYear()){
+            return value;
+        }
+        else {
+            throw new IllegalArgumentException("Year must be greater than year now");
+        }
     }
 
     // Calculates how old the user is based on the date now
