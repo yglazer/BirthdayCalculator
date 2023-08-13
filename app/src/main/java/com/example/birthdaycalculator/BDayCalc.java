@@ -4,7 +4,7 @@ public class BDayCalc {
 
 
         /*Fields*/
-        private int month,day , year;
+        private int month, day , year;
 
 
         /*constructors*/
