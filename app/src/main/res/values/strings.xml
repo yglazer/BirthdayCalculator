@@ -27,4 +27,7 @@
     <string name="night_mode_key">night mode</string>
     <string name="night_mode_title">Night Mode</string>
     <string name="display_header">Display</string>
+    <string name="month_hint">mm</string>
+    <string name="hint_days">dd</string>
+    <string name="hint_year">yyyy</string>
 </resources>

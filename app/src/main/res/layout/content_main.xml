@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="mm"
+        android:hint="@string/month_hint"
         app:layout_constraintBottom_toTopOf="@+id/tv_day"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        android:hint="dd"
+        android:hint="@string/hint_days"
         app:layout_constraintBottom_toTopOf="@+id/tv_year"
         app:layout_constraintStart_toStartOf="@+id/et_month"
         app:layout_constraintTop_toBottomOf="@+id/tv_day" />
@@ -98,7 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginBottom="322dp"
-        android:hint="yyyy"
+        android:hint="@string/hint_year"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/et_day"
         app:layout_constraintTop_toBottomOf="@+id/tv_year" />

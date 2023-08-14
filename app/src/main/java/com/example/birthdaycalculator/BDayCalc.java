@@ -34,7 +34,7 @@ public class BDayCalc {
     }
 
     public void setMonth(int month) {
-        this.month = checkAndGetGreaterThanZero(month, "Month");
+        this.month = checkMonthIsValid(month);
     }
 
     public int getDay() {
@@ -42,7 +42,7 @@ public class BDayCalc {
     }
 
     public void setDay(int day) {
-        this.day = checkAndGetGreaterThanZero(day, "Day");
+        this.day = checkDayIsValid(day);
     }
 
     public int getYear() {
@@ -50,7 +50,7 @@ public class BDayCalc {
     }
 
     public void setYear(int year) {
-        this.year = checkAndGetGreaterThanZero(year, "Year");
+        this.year = checkYearIsValid(year);
     }
 
     public int getUserMonth() {
@@ -64,12 +64,32 @@ public class BDayCalc {
         this.uDay = checkAndGetGreaterThanZero(uDay, "Day");
     }
     public int getUserYear() {return uYear;}
-    public void setUserYear(int uYear) {this.uYear = checkYearIsValid(uYear);}
+    public void setUserYear(int uYear) {this.uYear = checkAndGetGreaterThanZero(uYear, "Year");}
     private int checkAndGetGreaterThanZero(int value, String description) {
         if (value > 0)
             return value;
         else
             throw new IllegalArgumentException(description + " must be greater than zero.");
+    }
+
+    // Checks that the day is only a number between 1 and 31
+    private int checkDayIsValid(int day){
+        if (day > 0 && day <= 31){
+            return day;
+        }
+        else {
+            throw new IllegalArgumentException("Day must be a number between 1 and 31");
+        }
+    }
+
+    // Check that month is a valid month
+    private int checkMonthIsValid(int month) {
+        if (month > 0 && month <= 12) {
+            return month;
+        }
+        else {
+            throw new IllegalArgumentException("Month must be a number between 1 and 12");
+        }
     }
 
     /* Checks that the year is not in the future because then the year will be negative */

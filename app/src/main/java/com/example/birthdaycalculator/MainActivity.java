@@ -16,24 +16,42 @@ import com.example.birthdaycalculator.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
+
 /*hello*/
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private EditText etMonth;
+    private EditText etDay;
+    private EditText etYear;
+    private TextView tvMonth;
+    private TextView tvDay;
+    private TextView tvYear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView();
         setSupportActionBar(binding.toolbar);
-        setupFAB();
+        etMonth = findViewById(R.id.et_month);
+        etDay = findViewById(R.id.et_day);
+        etYear = findViewById(R.id.et_year);
+        // tvMonth = (etMonth.getText().toString());
+        handleFABClick();
     }
 
-    private void setupFAB() {
+    /*private TextView calcMonth(String value) {
+        int month = Integer.parseInt(value);
+        return month;
+    }*/
+    private void handleFABClick() {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+
+                Snackbar.make(view, "Replace with your own action" , Snackbar.LENGTH_LONG)
                         .setAnchorView(R.id.fab)
                         .setAction("Action", null).show();
             }
