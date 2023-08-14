@@ -35,17 +35,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView();
         setSupportActionBar(binding.toolbar);
-        etMonth = findViewById(R.id.et_month);
+        /*etMonth = findViewById(R.id.et_month);
         etDay = findViewById(R.id.et_day);
         etYear = findViewById(R.id.et_year);
-        // tvMonth = (etMonth.getText().toString());
+        calcMonth(etMonth.getText().toString());*/
         handleFABClick();
     }
 
-    /*private TextView calcMonth(String value) {
+    private void calcMonth(String value) {
         int month = Integer.parseInt(value);
-        return month;
-    }*/
+
+    }
     private void handleFABClick() {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
