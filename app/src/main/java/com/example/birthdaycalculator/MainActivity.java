@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         setupToolbar();
         setupFAB();
         setupFields();
-        // calcMonth(etMonth.getText().toString());
     }
 
     private void setupToolbar() {
