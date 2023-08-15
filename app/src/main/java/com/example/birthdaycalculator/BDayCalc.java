@@ -7,26 +7,23 @@ public class BDayCalc {
 
     /*Fields
      * u before the name means how many months/days/years old the person is */
-    private int month, day, year, uMonth, uDay, uYear;
-
+    private int month, day, year;
+    private LocalDate date = LocalDate.now();
+    private int dayNow = date.getDayOfMonth();
+    private int monthNow = date.getMonthValue();
+    private int yearNow = date.getYear();
 
     /*constructors*/
     public BDayCalc() {
         this.month = 0;
         this.day = 0;
         this.year = 0;
-        this.uDay = 0;
-        this.uMonth = 0;
-        this.uYear = 0;
     }
 
-    public BDayCalc(int month, int day, int year, int uDay, int uMonth, int uYear) {
+    public BDayCalc(int month, int day, int year) {
         this.month = month;
         this.day = day;
         this.year = year;
-        this.uDay = uDay;
-        this.uMonth = uMonth;
-        this.uYear = uYear;
     }
 
     public int getMonth() {
@@ -52,19 +49,6 @@ public class BDayCalc {
     public void setYear(int year) {
         this.year = checkYearIsValid(year);
     }
-
-    public int getUserMonth() {
-        return uMonth;
-    }
-    public void setUserMonth(int uMonth) {
-        this.uMonth = checkAndGetGreaterThanZero(uMonth, "Month");
-    }
-    public int getUserDay() { return uDay; }
-    public void setUserDay(int uDay) {
-        this.uDay = checkAndGetGreaterThanZero(uDay, "Day");
-    }
-    public int getUserYear() {return uYear;}
-    public void setUserYear(int uYear) {this.uYear = checkAndGetGreaterThanZero(uYear, "Year");}
     private int checkAndGetGreaterThanZero(int value, String description) {
         if (value > 0)
             return value;
@@ -95,44 +79,46 @@ public class BDayCalc {
     /* Checks that the year is not in the future because then the year will be negative */
     private int checkYearIsValid(int value) {
         LocalDate date = LocalDate.now();
-        if (value >= date.getYear()){
+        if (value <= date.getYear()){
             return value;
         }
         else {
-            throw new IllegalArgumentException("Year must be greater than year now");
+            throw new IllegalArgumentException("Year must be less than year now");
         }
     }
 
-    // Calculates how old the user is based on the date now
-    public void calcDates() {
-        LocalDate date = LocalDate.now();
-        int dayNow = date.getDayOfMonth();
-        int monthNow = date.getMonthValue();
-        int yearNow = date.getYear();
+    // Calculates how many days old the user is in addition to months and years
+    public int calcDays(){
+        int daysOld = 0;
         /* Checks that the result won't be negative, like for example if the user was born
-         * in January, and it's now August, the result would be -7 because 1-8=-7 */
+         * on the 1st, and it's now the 17th, the result for day would be -16 because 1-17=-16 */
         if (dayNow >= this.day) {
-            amtDay(dayNow);
+            daysOld = amtDay(dayNow);
         } else {
             dayNow += 30;
             monthNow--;
-            setUserDay(amtDay(dayNow));
+            daysOld = amtDay(dayNow);
         }
+        return daysOld;
+    }
+
+    public int calcMonths(){
+        int monthsOld = 0;
         if (monthNow >= this.month) {
-            amtMonth(monthNow);
+            monthsOld = amtMonth(monthNow);
         } else {
             monthNow += 12;
             yearNow--;
-            amtMonth(monthNow);
+            monthsOld = amtMonth(monthNow);
         }
-        setUserMonth(amtMonth(monthNow));
-        amtYear(yearNow);
-        setUserYear(amtYear(yearNow));
+        return monthsOld;
     }
 
-    /*nMonth==now month
-     * uMonth - month the user was born in
-     * method returns the months/days/years old user is */
+    public int calcYears(){
+        return amtYear(yearNow);
+    }
+
+    /* nMonth==now month method returns the months/days/years old user is */
     public int amtMonth(int nMonth) {
         return nMonth - this.month;
     }

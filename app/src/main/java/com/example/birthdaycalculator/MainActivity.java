@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.birthdaycalculator.databinding.ActivityMainBinding;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AlertDialog;
@@ -12,50 +13,129 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 
-import com.example.birthdaycalculator.databinding.ActivityMainBinding;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.time.LocalDate;
+import java.util.Locale;
+
+import kotlin.Triple;
 
 /*hello*/
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private EditText etMonth;
-    private EditText etDay;
-    private EditText etYear;
-    private TextView tvMonth;
-    private TextView tvDay;
-    private TextView tvYear;
+    private EditText etMonth, etDay, etYear;
+
+    private TextView tvMonth, tvDay, tvYear;
+    private Snackbar snackBar;
+    private BDayCalc mBDayCalc; // Model Birthday Calculator
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView();
+        setupToolbar();
+        setupFAB();
+        setupFields();
+        // calcMonth(etMonth.getText().toString());
+    }
+
+    private void setupToolbar() {
         setSupportActionBar(binding.toolbar);
-        /*etMonth = findViewById(R.id.et_month);
+    }
+
+    private void setupFields() {
+        etMonth = findViewById(R.id.et_month);
         etDay = findViewById(R.id.et_day);
         etYear = findViewById(R.id.et_year);
-        calcMonth(etMonth.getText().toString());*/
-        handleFABClick();
+        View layoutMain = findViewById(R.id.activity_main);
+        snackBar = Snackbar.make(layoutMain, "", Snackbar.LENGTH_INDEFINITE);
     }
 
     private void calcMonth(String value) {
         int month = Integer.parseInt(value);
 
     }
-    private void handleFABClick() {
+    private void setupFAB() {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
-                Snackbar.make(view, "Replace with your own action" , Snackbar.LENGTH_LONG)
-                        .setAnchorView(R.id.fab)
-                        .setAction("Action", null).show();
-            }
+            public void onClick(View view) {handleFABClick(view);}
         });
+    }
+
+    private void handleFABClick(View view) {
+        Triple< String, String, String> monthDayYear = new Triple<>(
+                etMonth.getText().toString(),
+                etDay.getText().toString(),
+                etYear.getText().toString());
+        if (isValidFormData(monthDayYear)){
+            setModelFields(monthDayYear);
+            String msg = generateFormattedStringFromModel();
+        }
+        else {
+            Toast.makeText(getApplicationContext(),
+                    R.string.error_msg,
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private String generateFormattedStringFromModel() {
+        final int yearsOld, monthsOld, daysOld;
+        yearsOld = mBDayCalc.calcYears();
+        monthsOld = mBDayCalc.calcMonths();
+        daysOld = mBDayCalc.calcDays();
+
+        return String.format(Locale.getDefault(),
+                "%s %d; %s %d %s \n%d %s",
+                getString(R.string.you_are), yearsOld, getString(R.string.years),
+                monthsOld, getString(R.string.months), daysOld, getString(R.string.days_old));
+    }
+
+    private void setModelFields(Triple<String, String, String> monthDayYear) {
+            assert monthDayYear.getFirst() != null;
+            assert monthDayYear.getSecond() != null;
+            assert monthDayYear.getThird() != null;
+
+            int month = Integer.parseInt(monthDayYear.getFirst());
+            int day = Integer.parseInt(monthDayYear.getSecond());
+            int year = Integer.parseInt(monthDayYear.getThird());
+
+            if (mBDayCalc == null)
+                mBDayCalc = new BDayCalc(month, day, year);
+            else
+            {
+                mBDayCalc.setMonth(month);
+                mBDayCalc.setDay(day);
+                mBDayCalc.setYear(year);
+            }
+        }
+
+    private boolean isValidFormData(Triple<String, String, String> monthDayYear) {
+        LocalDate date = LocalDate.now();
+        String month = monthDayYear.getFirst();
+        String day = monthDayYear.getSecond();
+        String year = monthDayYear.getThird();
+
+        return month != null && day != null && year != null &&
+                month.length() > 0 && day.length() > 0 && year.length() > 0
+                && Integer.parseInt(month) > 0 && Integer.parseInt(month) <= 12
+                && Integer.parseInt(day) > 0 && dayIsValid(monthDayYear)
+                && Integer.parseInt(year) <= date.getYear();
+    }
+
+    private boolean dayIsValid(Triple<String, String, String> monthDayYear) {
+        int month = Integer.parseInt(monthDayYear.getFirst());
+        int day = Integer.parseInt(monthDayYear.getSecond());
+        if (month == 2 && day <= 29){
+            return true;
+        } else if ((month == 4 || month == 6 || month == 9 || month == 11) && day <= 30) {
+            return true;
+        } else return (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 ||
+                month == 10 || month == 12) && day <= 31;
     }
 
     private void setContentView() {
