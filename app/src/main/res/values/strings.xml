@@ -32,9 +32,9 @@
     <string name="hint_year">yyyy</string>
 
     <!-- Java Strings -->
-    <string name="you_are">You are: </string>
-    <string name="years">years</string>
-    <string name="months">months</string>
+    <string name="you_are">You are </string>
+    <string name="years">years,</string>
+    <string name="months">months, and</string>
     <string name="days_old">days old.</string>
     <string name="error_msg">Error. Check that the date is valid</string>
 

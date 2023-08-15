@@ -61,13 +61,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void setupFAB() {
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {handleFABClick(view);}
-        });
+        binding.fab.setOnClickListener(view -> handleFABClick());
     }
 
-    private void handleFABClick(View view) {
+    private void handleFABClick() {
         Triple< String, String, String> monthDayYear = new Triple<>(
                 etMonth.getText().toString(),
                 etDay.getText().toString(),
@@ -75,12 +72,18 @@ public class MainActivity extends AppCompatActivity {
         if (isValidFormData(monthDayYear)){
             setModelFields(monthDayYear);
             String msg = generateFormattedStringFromModel();
+            showMessageWithLinkToResultsActivity(msg);
         }
         else {
             Toast.makeText(getApplicationContext(),
                     R.string.error_msg,
                     Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void showMessageWithLinkToResultsActivity(String msg) {
+        snackBar.setText(msg);
+        snackBar.show();
     }
 
     private String generateFormattedStringFromModel() {
@@ -90,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         daysOld = mBDayCalc.calcDays();
 
         return String.format(Locale.getDefault(),
-                "%s %d; %s %d %s \n%d %s",
+                "%s %d %s %d %s %d %s",
                 getString(R.string.you_are), yearsOld, getString(R.string.years),
                 monthsOld, getString(R.string.months), daysOld, getString(R.string.days_old));
     }
