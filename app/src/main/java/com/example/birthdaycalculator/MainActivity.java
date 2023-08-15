@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private EditText etMonth, etDay, etYear;
-
-    private TextView tvMonth, tvDay, tvYear;
     private Snackbar snackBar;
     private BDayCalc mBDayCalc; // Model Birthday Calculator
 
@@ -54,37 +52,35 @@ public class MainActivity extends AppCompatActivity {
         View layoutMain = findViewById(R.id.activity_main);
         snackBar = Snackbar.make(layoutMain, "", Snackbar.LENGTH_LONG);
     }
-
-    private void calcMonth(String value) {
-        int month = Integer.parseInt(value);
-
-    }
     private void setupFAB() {
         binding.fab.setOnClickListener(view -> handleFABClick());
     }
 
     private void handleFABClick() {
+        // Variable that can hold 3 different variables. Puts the day, month and year together
         Triple< String, String, String> monthDayYear = new Triple<>(
                 etMonth.getText().toString(),
                 etDay.getText().toString(),
                 etYear.getText().toString());
+        // If the data is valid, then display it
         if (isValidFormData(monthDayYear)){
             setModelFields(monthDayYear);
             String msg = generateFormattedStringFromModel();
             showMessageWithLinkToResultsActivity(msg);
         }
+        // If the data is not valid, display a toast that the data is not valid
         else {
-            Toast.makeText(getApplicationContext(),
-                    R.string.error_msg,
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.error_msg, Toast.LENGTH_SHORT).show();
         }
     }
 
+    // Actually shows the data, in a snackbar
     private void showMessageWithLinkToResultsActivity(String msg) {
         snackBar.setText(msg);
         snackBar.show();
     }
 
+    // Calculates the age and generates it into a formatted string
     private String generateFormattedStringFromModel() {
         final int yearsOld, monthsOld, daysOld;
         yearsOld = mBDayCalc.calcYears();
@@ -97,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 monthsOld, getString(R.string.months), daysOld, getString(R.string.days_old));
     }
 
+    // Sets the fields to be what the user inputted into the app
     private void setModelFields(Triple<String, String, String> monthDayYear) {
             assert monthDayYear.getFirst() != null;
             assert monthDayYear.getSecond() != null;
@@ -122,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
         String day = monthDayYear.getSecond();
         String year = monthDayYear.getThird();
 
+        // Return true if it's a valid date
         return month != null && day != null && year != null &&
                 month.length() > 0 && day.length() > 0 && year.length() > 0
                 && Integer.parseInt(month) > 0 && Integer.parseInt(month) <= 12
@@ -129,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 && Integer.parseInt(year) <= date.getYear();
     }
 
+    // Validates that the day is valid considering how many days are in that month
     private boolean dayIsValid(Triple<String, String, String> monthDayYear) {
         int month = Integer.parseInt(monthDayYear.getFirst());
         int day = Integer.parseInt(monthDayYear.getSecond());

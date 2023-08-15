@@ -8,7 +8,7 @@ public class BDayCalc {
     /*Fields
      * u before the name means how many months/days/years old the person is */
     private int month, day, year;
-    private LocalDate date = LocalDate.now();
+    private final LocalDate date = LocalDate.now();
     private int dayNow = date.getDayOfMonth();
     private int monthNow = date.getMonthValue();
     private int yearNow = date.getYear();
