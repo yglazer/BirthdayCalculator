@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         etDay = findViewById(R.id.et_day);
         etYear = findViewById(R.id.et_year);
         View layoutMain = findViewById(R.id.activity_main);
-        snackBar = Snackbar.make(layoutMain, "", Snackbar.LENGTH_INDEFINITE);
+        snackBar = Snackbar.make(layoutMain, "", Snackbar.LENGTH_LONG);
     }
 
     private void calcMonth(String value) {
