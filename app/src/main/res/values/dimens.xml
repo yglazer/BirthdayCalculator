@@ -1,4 +1,9 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="standard_margin">16dp</dimen>
+    <dimen name="banner_margin">32dp</dimen>
+    <dimen name="margin_start">7dp</dimen>
+    <dimen name="et_margin_start">4dp</dimen>
+    <dimen name="tv_margin_start">20dp</dimen>
+    <dimen name="margin_bottom">15dp</dimen>
 </resources>

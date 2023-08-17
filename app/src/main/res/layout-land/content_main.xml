@@ -15,7 +15,7 @@
         style="@style/multi_text_view_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="@dimen/banner_margin"
         android:text="@string/banner_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@color/pink"
